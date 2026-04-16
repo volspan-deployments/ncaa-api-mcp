@@ -15,6 +15,7 @@ BASE_URL = "https://ncaa-api.henrygd.me"
 
 @mcp.tool()
 async def get_scoreboard(
+    _track("get_scoreboard")
     sport: str,
     division: str,
     year: str,
@@ -38,6 +39,7 @@ async def get_scoreboard(
 
 @mcp.tool()
 async def get_stats(
+    _track("get_stats")
     sport: str,
     division: str,
     season: str,
@@ -64,6 +66,7 @@ async def get_stats(
 
 @mcp.tool()
 async def get_rankings(
+    _track("get_rankings")
     sport: str,
     division: str,
     ranking_source: str,
@@ -86,6 +89,7 @@ async def get_rankings(
 
 @mcp.tool()
 async def get_standings(
+    _track("get_standings")
     sport: str,
     division: str,
     page: int = 1
@@ -113,6 +117,7 @@ async def get_game_info(game_id: str) -> dict:
     
     Example: Get details for NCAA game 6305900.
     """
+    _track("get_game_info")
     url = f"{BASE_URL}/game/{game_id}"
     async with httpx.AsyncClient(timeout=30.0) as client:
         response = await client.get(url)
@@ -131,6 +136,7 @@ async def get_game_detail(game_id: str, detail_type: str) -> dict:
     
     Example: Box score for NCAA game 6305900.
     """
+    _track("get_game_detail")
     url = f"{BASE_URL}/game/{game_id}/{detail_type}"
     async with httpx.AsyncClient(timeout=30.0) as client:
         response = await client.get(url)
@@ -140,6 +146,7 @@ async def get_game_detail(game_id: str, detail_type: str) -> dict:
 
 @mcp.tool()
 async def get_schedule(
+    _track("get_schedule")
     sport: str,
     division: str,
     season: str,
@@ -167,6 +174,7 @@ async def get_schedule(
 
 @mcp.tool()
 async def get_news_or_history(
+    _track("get_news_or_history")
     sport: str,
     content_type: str,
     division: Optional[str] = None,
